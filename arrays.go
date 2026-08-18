@@ -39,4 +39,21 @@ func main() {
 	fmt.Println(slice_dice[0:])
 	fmt.Println(slice_dice[:8])
 	fmt.Println(slice_dice[:2:3]) // outputs [1,2]; third parameter is the capacity. as general rule 0 <= len(slice) <= cap(slice)
+
+	// shallow copy and deep copy
+	copy_1 := [4]int{5, 6, 7, 8}
+	copy_2 := copy_1[:4] // shallow copy, if an slice value from copy_2 updated, copy_1 array value updated as well
+	copy_2[0] = 15
+
+	fmt.Println(copy_1)
+	fmt.Println(copy_2)
+
+	dcopy_1 := []int{5, 6, 7, 8}
+	dcopy_2 := make([]int, 4)
+	copy(dcopy_2, dcopy_1) // deep copy, if slice value of dcopy_2 updated, dcopy_1 slice won't be affected
+
+	dcopy_2[0] = 15
+
+	fmt.Println(dcopy_1)
+	fmt.Println(dcopy_2)
 }
