@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func initArray() {
 	// [] - means can have dynamic length
 	x := []int{1, 2: 11, 3, 10: 12}
 	x = append(x, 69)
