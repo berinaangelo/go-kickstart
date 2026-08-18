@@ -4,4 +4,5 @@ func main() {
 	initArray()
 	initStrings()
 	initMaps()
+	initStruct()
 }
