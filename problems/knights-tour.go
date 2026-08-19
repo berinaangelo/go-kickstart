@@ -94,6 +94,8 @@ func solveKnightsTour() bool {
 
 	for i := 2; i <= N*N+1; i++ {
 		step := nextMove(board, posX, posY)
+
+		// TODO: find workaround on how to deal with tie breakers
 		if step == nil {
 			fmt.Printf("Tour failed at step %v. Backtracking needed or bad tie-break occurred.", i)
 			return false
