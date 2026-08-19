@@ -7,9 +7,7 @@ import (
 	"math/rand"
 )
 
-// todo: find way how to parameterize this
-const N int = 8
-
+var N int = 8
 var MOVES = struct {
 	x []int
 	y []int
@@ -25,7 +23,7 @@ func isMoveValid(x int, y int, board [][]int) bool {
 func getDegree(x int, y int, board [][]int) int {
 	count := 0
 
-	// changed to MOVES.x since its a slice and 0-based
+	// used MOVES.x since its a slice and 0-based
 	for idx := range MOVES.x {
 		if isMoveValid(x+MOVES.x[idx], y+MOVES.y[idx], board) {
 			count += 1
@@ -82,11 +80,12 @@ func printBoard(board [][]int) {
 	}
 }
 
-func solveKnightsTour() bool {
-	if N < 3 && N > 100 {
+func solveKnightsTour(boardSize *int) bool {
+	if *boardSize < 3 && *boardSize > 100 {
 		fmt.Println("invalid board size")
 		return false
 	}
+	N = *boardSize
 
 	// initialize the NxN grid
 	board := createBoard(N)

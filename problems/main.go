@@ -1,5 +1,5 @@
 package main
 
 func main() {
-	knightsTour(100)
+	solveKnightsTour()
 }
