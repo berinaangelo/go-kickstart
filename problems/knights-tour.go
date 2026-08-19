@@ -85,9 +85,9 @@ func solveKnightsTour(boardSize *int) bool {
 		fmt.Println("invalid board size")
 		return false
 	}
-	N = *boardSize
 
 	// initialize the NxN grid
+	N = *boardSize
 	board := createBoard(N)
 	posX, posY := rand.Intn(N-1), rand.Intn(N-1)
 
