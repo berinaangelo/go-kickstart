@@ -73,13 +73,36 @@ func createBoard(N int) [][]int {
 	return board
 }
 
-func knightsTour() {
-	// initialize the NxN grid
-	board := createBoard(N)
+func printBoard(board [][]int) {
+	for _, row := range board {
+		for _, cell := range row {
+			fmt.Printf("%2d ", cell)
+		}
+		fmt.Println()
+	}
+}
 
+func solveKnightsTour() bool {
 	if N < 3 && N > 100 {
 		fmt.Println("invalid board size")
+		return false
 	}
 
-	fmt.Println(board)
+	// initialize the NxN grid
+	board := createBoard(N)
+	posX, posY := rand.Intn(N-1), rand.Intn(N-1)
+
+	for i := 2; i <= N*N+1; i++ {
+		step := nextMove(board, posX, posY)
+		if step == nil {
+			fmt.Printf("Tour failed at step %v. Backtracking needed or bad tie-break occurred.", i)
+			return false
+		}
+
+		posX, posY = (*step)[0], (*step)[1]
+		board[posX][posY] = i
+	}
+
+	printBoard(board)
+	return true
 }
