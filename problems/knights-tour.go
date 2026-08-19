@@ -35,7 +35,7 @@ func getDegree(x int, y int, board [][]int) int {
 	return count
 }
 
-func nextMove(board [][]int, posX int, posY int) *int {
+func nextMove(board [][]int, posX int, posY int) *[]int {
 	minDegIdx := -1
 	minDegree := N + 1
 
@@ -59,7 +59,7 @@ func nextMove(board [][]int, posX int, posY int) *int {
 		return nil
 	}
 
-	return (posX + MOVES.x[minDegIdx], curryY + MOVES.y[minDegIdx])
+	return &[]int{(posX + MOVES.x[minDegIdx]), (posY + MOVES.y[minDegIdx])}
 }
 
 func knightsTour() {
