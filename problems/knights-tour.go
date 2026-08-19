@@ -43,14 +43,13 @@ func nextMove(board [][]int, posX int, posY int) *[]int {
 
 	for i := range MOVES.x {
 		idx := (startIndex + i) % N
-		nextX := posX + MOVES.x[idx]
-		nextY := posY + MOVES.y[idx]
+		nextX, nextY := posX+MOVES.x[idx], posY+MOVES.y[idx]
 
 		if isMoveValid(nextX, nextY, board) {
 			degree := getDegree(nextX, nextY, board)
+
 			if degree < minDegree {
-				minDegree = degree
-				minDegIdx = idx
+				minDegree, minDegIdx = degree, idx
 			}
 		}
 	}
@@ -62,10 +61,25 @@ func nextMove(board [][]int, posX int, posY int) *[]int {
 	return &[]int{(posX + MOVES.x[minDegIdx]), (posY + MOVES.y[minDegIdx])}
 }
 
+func createBoard(N int) [][]int {
+	board := make([][]int, N)
+	for i := range board {
+		board[i] = make([]int, N)
+		for j := range board[i] {
+			board[i][j] = -1
+		}
+	}
+
+	return board
+}
+
 func knightsTour() {
+	// initialize the NxN grid
+	board := createBoard(N)
+
 	if N < 3 && N > 100 {
 		fmt.Println("invalid board size")
 	}
 
-	fmt.Println(MOVES)
+	fmt.Println(board)
 }
